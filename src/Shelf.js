@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import BookState from './BookState';
 import PropsTypes from 'prop-types';
 
-class CurrentlyReading extends Component{
+class Shelf extends Component{
 
     static PropsTypes = {
-        books: PropsTypes.array.isRequired
+        books: PropsTypes.array.isRequired,
+        shelfTitle: PropsTypes.string.isRequired
     }
 
     render(){
 
-        const { books } = this.props;
+        const { books, shelfTitle } = this.props;
 
         return(
             <div className="bookshelf">
-                    <h2 className="bookshelf-title">Currently Reading</h2>
+                    <h2 className="bookshelf-title">{shelfTitle}</h2>
                     <div className="bookshelf-books">
                     <ol className="books-grid">
                         {books.map((book) => (
@@ -37,4 +38,4 @@ class CurrentlyReading extends Component{
 }
 
 
-export default CurrentlyReading;
+export default Shelf;

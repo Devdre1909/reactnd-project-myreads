@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import CurrentlyReading from './CurrentlyReading';
-import WantToRead from './WantToRead';
-import Read from './Read';
+import PropsTypes from 'prop-types';
+import Shelf from './Shelf';
 
-class BooksSelves extends Component{
+class BookShelfs extends Component{
+
+    static PropsTypes = {
+      CurrentlyReading: PropsTypes.array.isRequired,
+      bookRead: PropsTypes.array.isRequired,
+      loading: PropsTypes.bool.isRequired
+    }
+
     render(){
+
+      const {CurrentlyReadingBook, loading, bookRead } = this.props;
+
         return(
             <div className="list-books">
             <div className="list-books-title">
@@ -12,9 +21,9 @@ class BooksSelves extends Component{
             </div>
             <div className="list-books-content">
               <div>
-                <CurrentlyReading />
-                <WantToRead />
-                <Read />
+                {(loading) ? (<div style={{ margin: 'auto', fontWeight: 'bolder'  }}>Loading shelf...</div>) : (<Shelf books={CurrentlyReadingBook} />)}
+                <Shelf />
+                {(loading) ? (<div style={{ margin: 'auto', fontWeight: 'bolder'  }}>Loading shelf...</div>) : (<Shelf books={bookRead} />)}
                 </div>
               </div>
               <div className="open-search">
@@ -26,4 +35,4 @@ class BooksSelves extends Component{
 }
 
 
-export default BooksSelves;
+export default BookShelfs;
