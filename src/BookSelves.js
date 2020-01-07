@@ -6,13 +6,14 @@ class BookShelfs extends Component{
 
     static PropsTypes = {
       CurrentlyReading: PropsTypes.array.isRequired,
-      bookRead: PropsTypes.array.isRequired,
+      WantToRead: PropsTypes.array.isRequired,
+      Read: PropsTypes.array.isRequired,
       loading: PropsTypes.bool.isRequired
     }
 
     render(){
 
-      const {CurrentlyReadingBook, loading, bookRead } = this.props;
+      const {CurrentlyReadingBook, loading, WantToRead, Read } = this.props;
 
         return(
             <div className="list-books">
@@ -21,9 +22,9 @@ class BookShelfs extends Component{
             </div>
             <div className="list-books-content">
               <div>
-                {(loading) ? (<div style={{ margin: 'auto', fontWeight: 'bolder'  }}>Loading shelf...</div>) : (<Shelf books={CurrentlyReadingBook} />)}
-                <Shelf />
-                {(loading) ? (<div style={{ margin: 'auto', fontWeight: 'bolder'  }}>Loading shelf...</div>) : (<Shelf books={bookRead} />)}
+                {(loading) ? (<div style={{ margin: 'auto', fontWeight: 'bolder', textAlign: 'center' }}>Loading shelf...</div>) : (<Shelf shelfTitle="Currently Reading" books={CurrentlyReadingBook} />)}
+                {(loading) ? (<div style={{ margin: 'auto', fontWeight: 'bolder', textAlign: 'center'  }}>Loading shelf...</div>) : (<Shelf shelfTitle="Want To Read" books={WantToRead} />)}
+                {(loading) ? (<div style={{ margin: 'auto', fontWeight: 'bolder', textAlign: 'center'  }}>Loading shelf...</div>) : (<Shelf shelfTitle="Read" books={Read} />)}
                 </div>
               </div>
               <div className="open-search">
