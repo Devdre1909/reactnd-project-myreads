@@ -29,9 +29,9 @@ class BooksApp extends Component {
     const {books, loading} = this.state;
 
     const booksReading = books === [] ? books : books.filter(book => (book.shelf === "currentlyReading"));
-    const booksRead = books === [] ? books : books.filter(book => (book.shelf === "read"));
-    
-    console.log(booksRead);
+    const wantToRead = books === [] ? books : books.filter(book => (book.shelf === "wantToRead"));
+    const read = books === [] ? books : books.filter(book => (book.shelf === "read"));
+
     
     return (
       <div className="app">
@@ -40,7 +40,8 @@ class BooksApp extends Component {
         ) : (
           <BookShelfs 
             CurrentlyReadingBook={booksReading}
-            bookRead={booksRead}
+            WantToRead={wantToRead}
+            Read={read}
             loading={loading} />
         )
         }
