@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import BookState from './BookState';
 import PropsTypes from 'prop-types';
 
 class Shelf extends Component{
 
     static PropsTypes = {
         books: PropsTypes.array.isRequired,
-        shelfTitle: PropsTypes.string.isRequired
+        shelfTitle: PropsTypes.string.isRequired,
+        onChangeShelf: PropsTypes.func.isRequired
+    }
+
+    handleOnChangeShelf = (book, shelf) => {
+        if(this.props.onChangeShelf) this.props.onChangeShelf(book, shelf);
     }
 
     render(){
@@ -23,7 +27,19 @@ class Shelf extends Component{
                             <div className="book">
                                 <div className="book-top">
                                 <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
-                                <BookState shelfState={book.shelf} />
+                                <div className="book-shelf-changer">
+                                    <form >
+                                        <select onChange={(e) => {
+                                            this.handleOnChangeShelf(book, e.target.value)
+                                        }} value={book.shelf}>
+                                            <option value="move" disabled>Move to...</option>
+                                            <option value="currentlyReading">Currently Reading</option>
+                                            <option value="wantToRead" >Want to Read</option>
+                                            <option value="read" >Read</option>
+                                            <option value="none" defaultChecked="true">None</option>
+                                        </select>
+                                    </form>
+                                </div>
                                 </div>
                                 <div className="book-title">{book.title}</div>
                                 <div className="book-authors">{book.authors.map((author) => (`${author} `))}</div>
