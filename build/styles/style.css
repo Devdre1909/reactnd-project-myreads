@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html, body{
+    height: 100%;
+    color: #333;
+  }
+  
+  body {
+    line-height: 1.5;
+  }
+  
+  body, .app {
+    background: white;
+  }
+
+  .spinner .animate{
+    animation-name: spin;
+    animation-duration: 2s;
+  }
+  

@@ -1,16 +1,17 @@
-html, body, .root {
-  height: 100%;
-}
-
-body {
-  line-height: 1.5;
-}
-
-body, .app {
-  background: white;
+a{
+  text-decoration: none;
+  color: #222;
+  font-size: 1.1rem;
 }
 
 /* main page */
+.app{
+  height: 100%;
+}
+
+.list-books{
+  height: 100%;
+}
 
 .list-books-title {
   padding: 10px 0;
@@ -27,6 +28,8 @@ body, .app {
 .list-books-content {
   padding: 0 0 80px;
   flex: 1;
+  position: relative;
+  height: 100%;
 }
 
 .bookshelf {
@@ -51,6 +54,7 @@ body, .app {
   position: fixed;
   right: 25px;
   bottom: 25px;
+  z-index: 999;
 }
 
 .open-search .button {
@@ -66,6 +70,7 @@ body, .app {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 0;
   outline: 0;
+  z-index: 999;
 }
 
 .open-search button:hover {
@@ -83,6 +88,7 @@ body, .app {
   z-index: 5;
   display: flex;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+  height: 75px;
 }
 
 .search-books-input-wrapper {
@@ -96,6 +102,8 @@ body, .app {
   font-size: 1.25em;
   border: none;
   outline: none;
+  height: 100%;
+  
 }
 
 .close-search {
@@ -111,6 +119,7 @@ body, .app {
   font-size: 0;
   border: none;
   outline: none;
+  height: 100%;
 }
 
 button:active {
@@ -120,6 +129,28 @@ button:active {
 
 .search-books-results {
   padding: 80px 10px 20px;
+}
+
+.search-books-terms{
+  border: none;
+  background-color: #fff;
+  outline: none;
+  padding: 0 0.65rem;
+  cursor: pointer;
+  font-size: 1.25em;
+  color: #555;
+}
+
+@media screen and (max-width: 540px){
+  .search-books-terms{
+    font-size: 1em;
+    width: 120px;
+  }
+  .search-books-bar input{
+    padding: 10px 5px;
+    font-size: 1em;
+  }
+  
 }
 
 /* books grid */
@@ -189,10 +220,48 @@ button:active {
 .book-cover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background: #eee;
+  cursor: pointer;
 }
 
 .book-cover-title {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+/* Spinner */
+.spinner-container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex: 1 1;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  border-top: 3px solid #2e7c31;
+  border-right: 2.5px solid #2e7c31;
+  border-bottom: 2px solid transparent;
+}
+
+.spinner .animate{
+  animation-name: spin;
+  animation-duration: 2s;
+}
+
+@keyframes spin{
+  0%{
+    transform: rotateZ(0deg);
+  }
+  100%{
+    transform: rotateZ(360deg);
+  }
 }
