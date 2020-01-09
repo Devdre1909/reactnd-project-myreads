@@ -23,15 +23,17 @@ class Shelf extends Component{
                     <div className="bookshelf-books">
                     <ol className="books-grid">
                         {books.map((book) => (
-                            <li key={book.title.toLowerCase()}>
+                            <li key={book.id}>
                             <div className="book">
                                 <div className="book-top">
-                                <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
+                                <a href={book.previewLink} target="_black" rel="noopener">
+                                    <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
+                                </a>
                                 <div className="book-shelf-changer">
                                     <form >
                                         <select onChange={(e) => {
                                             this.handleOnChangeShelf(book, e.target.value)
-                                        }} value={book.shelf}>
+                                        }} value={(book.shelf) ? (book.shelf) : "none" }>
                                             <option value="move" disabled>Move to...</option>
                                             <option value="currentlyReading">Currently Reading</option>
                                             <option value="wantToRead" >Want to Read</option>
@@ -41,8 +43,10 @@ class Shelf extends Component{
                                     </form>
                                 </div>
                                 </div>
-                                <div className="book-title">{book.title}</div>
-                                <div className="book-authors">{book.authors.map((author) => (`${author} `))}</div>
+                                <div className="book-title">
+                                    <a href={book.previewLink} target="_black" rel="noopener">{book.title}</a>
+                                </div>
+                                <div className="book-authors">{(book.authors) ? (book.authors.map((author) => (`${author} `))) : (book.publisher)}</div>
                             </div>
                             </li>
                         ))}
